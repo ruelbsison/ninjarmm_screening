@@ -1,31 +1,111 @@
 1. Explain the different types of containers available in the standard library, what are their differences? Explain use cases for each.
+Answer:
+  There are 3 types of containers in C++ standard library, Sequential, Associative and Unordered containers.
+  Sequential containers are ordered-collections in which each element has a position depends on the time and place of insertion. Use sequential containers when you need to access elements by position.
+  Associative containers are sorted-collections in which the position of an element depends on its value. The value of the elements determine the position of the elements in the container. The order of insertion doesn't matter. Use sequential containers when you need to access sorted collection of elements by key.
+  Unordered containers are unordered-collections in which the position of an element doesn't matter. Neither does the order of insertion nor the value of the element. Only their existence in the container matters. Use Unordered containers when you need to access unordered collection of elements by key.
+
+References:
+https://www.haroldserrano.com/blog/the-three-types-of-containers-in-c
+
 2. What are some sorting algorithms, list at least 3? What are their differences and give use cases for each.
 3. What is the purpose of virtual destructors? What types of issues can arise if not used correctly. 
+Answer:
+  The purpose of the virtual destructors is to free or deallocate resources used by the Derived and Base classes. Issues such as Out Of Memory, Too Many Open Files and the likes could arise if virtual destructors are not used correctly.
+ 
 4. Explain the keyword: static. What does it mean in each context?
 5. When are static member variables initialized? 
+Answer: 
+  Static member variables were initialized during the start of the program and destroyed when the program ends.
+
 6. What is the difference between R-Values and L-Values?
+Answer:
+  L-Values is an object that can appear on the left-hand side of an assignment. Whereas R-Values is an expression that can appear only on the right-hand side of an assignment.
+
 7. Is this code safe? If so why? If not why?
 	std::string foo()
 	{
-		std::string something = “avalue”;
+		std::string something = ï¿½avalueï¿½;
 		return something;
 	}
 	
 	Bonus: What would most compilers do with this code?
-8. Why would you use new rather than malloc when allocating an object? Likewise, what’s the difference between free and delete?
+Answer:
+  The code is safe. The compiler will do copy by value on the string something variable.
+
+8. Why would you use new rather than malloc when allocating an object? Likewise, whatï¿½s the difference between free and delete?
+Answer:
+  Using new keyword when allocating an object calls the object's constructor whereas malloc does not. Likewise, using delete keyword to deallocate objects calls the object's destructor while free does not.
+
 9. Explain the purpose of std::move, and std::forward. 
+Answer: 
+  std::move takes an object and allows you to treat it as a temporary (an rvalue).
+  std::forward is to cast a templated function parameter (inside the function) to the value category (lvalue or rvalue) the caller used to pass it.
+
+References:
+  https://isocpp.org/blog/2018/02/quick-q-whats-the-difference-between-stdmove-and-stdforward
+  http://bajamircea.github.io/coding/cpp/2016/04/07/move-forward.html
+
 10. How do you share resources safely between threads? How would you share an integer value vs user defined type? 
 11. What are the some of the principles of object-oriented programming?
+Answer:
+  There are four basic principles in Object-Oriented programming: Encapsulation, Abstraction, Inheritance and Polymorphism.
+
 12. Explain inheritance vs composition vs aggregation?
+Answer:
+  Inheritance is an "is a" relationship between classes. It is a mechanism of reusing and extending existing classes without modifying them, thus producing hierarchical relationships between them.
+  Composition is a "has a" relationship between classes. It is an association that have complete ownership of its component objects(s). The composer object is responsible for destroying its component object(s) at or before its own destruction. A composition is incomplete without its components. 
+  Aggregation is a "has a" relationship between classes. It is an association that does not have complete ownership of its component objects(s). The responsibility for creating and destroying the objects lies outside the aggregator type. The aggregator is complete whether or not any of the objects that it uses exist.  The objects used survive the destruction of the aggregator. 
+
+References:
+  https://www.ibm.com/docs/en/zos/2.4.0?topic=reference-inheritance-c-only
+  https://ict.senecacollege.ca/~oop345/pages/content/compo.html
+
 13. Should you always initialize variables? 
+Answer: Yes. Proper initialization of variables produced deterministic program that is easier to debug and maintain. 
+
 14. Write a program (or multiple) in a known programming language to do the following:
 	a. Query for installed windows patches. 
 	b. Query for installed Linux Packages
 	c. Query for installed Mac Packages
+Answer:
+	#include <boost/predef.h>
+	#include <string>
+	using namespace std:
+	int main() {
+	  string installed_patches_cmd;
+	 
+	  #if BOOST_OS_WINDOWS
+
+	  #elif BOOST_OS_LINUX
+
+	  #elif BOOST_OS_MACOS
+
+	  #endif
+
+	  return EXIT_SUCCESS;
+	}
 15. Write a program (or multiple) in a known programming language to do the following:
 	a. Query for windows system information. 
 	b. Query for Linux system information
 	c. Query Mac system information
+Answer:
+	#include <boost/predef.h>
+	#include <string>
+	using namespace std:
+	int main() {
+	  string system_info_cmd;
+	  
+	  #if BOOST_OS_WINDOWS
+
+	  #elif BOOST_OS_LINUX
+
+	  #elif BOOST_OS_MACOS
+
+	  #endif
+
+	  return EXIT_SUCCESS;
+	}
 16. What concept(s) in C++ would you use to manage resources automatically?
 	a. How important are these concepts? 	
 	b. What tools are you familiar with for tracking resource allocations? 
