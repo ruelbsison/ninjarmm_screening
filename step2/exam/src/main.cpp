@@ -19,14 +19,23 @@ T IsInBounds(T httpResonseCode, T responseCodeFrom, T responseCodeTo) {
 }
 
 // i. Create a function that will take a vector of strings and a test function
-void ContainsTheString(const vector<string> &n, const string& tested)
+//typedef int comp_string (const std::string&);
+int ContainsTheString(bool func (const string&), const vector<string> &n)
 {
-
+    int count = 0;
     for (int j = 0; j < n.size(); j++ )
     {
-        cout << "n[" << j << "] = " << n[j] << endl;
+        //cout << "n[" << j << "] = " << n[j] << endl;
+        const std::string str = n[j];
+        cout << str << endl;
+
+        bool res = func(str);
+        if (res)
+          count++;
     }
 
+    cout << count << endl;
+    return count;
 }
 
 // j. how to use the ellipsis (...) with C++ variadic templates
@@ -68,6 +77,7 @@ int main(int argc, char** argv) {
     delete pilot;
     delete programmer;
 
+    cout << "--- h output ---" << endl;
     // h. Create a template function that will test if the provided values are within a range.
     uint32_t httpResonseCode = 400;
     IsInBounds<uint32_t>(httpResonseCode, 500, 599);
@@ -80,9 +90,12 @@ int main(int argc, char** argv) {
     httpResonseCode = 503;
     IsInBounds<uint32_t>(httpResonseCode, 500, 599);
 
-    //auto theStrings = vector<string> { "one", "two",  "test"};
-    //ContainsTheString();
+    cout << "--- i output ---" << endl;
+    // i. Create a function that will take a vector of strings and a test function,
+    auto theStrings = vector<string> { "one", "two",  "test"};
+    auto count = ContainsTheString([](const string& tested) { return tested == "test"; }, theStrings);
 
+    cout << "--- j output ---" << endl;
     // j. how to use the ellipsis (...) with C++ variadic templates
     //print(); // calls first overload, outputting only a newline
     print(1); // calls second overload
