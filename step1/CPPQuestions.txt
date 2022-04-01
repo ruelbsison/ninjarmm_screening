@@ -14,6 +14,13 @@ Answer:
   The purpose of the virtual destructors is to free or deallocate resources used by the Derived and Base classes. Issues such as Out Of Memory, Too Many Open Files and the likes could arise if virtual destructors are not used correctly.
  
 4. Explain the keyword: static. What does it mean in each context?
+Answer:
+	Static is a keyword in C++ used to give special characteristics to an element. Static elements are allocated storage only once in a program lifetime in static storage area. And they have a scope till the program lifetime.
+	1. Static variable in functions =  Initialized only once, and then they hold there value even through function calls.
+	2. Static Class Objects = Objects declared static are allocated storage in static storage area, and have scope till the end of program.
+	3. Static member Variable in class =  are those members which are shared by all the objects. Static data member has a single piece of storage, and is not available as separate copy with each object, like other non-static data members.
+	4. Static Methods in class = These functions work for the class as whole rather than for a particular object of a class. It can be called using an object and the direct member access . operator. But, its more typical to call a static member function by itself, using class name and scope resolution :: operator.
+
 5. When are static member variables initialized? 
 Answer: 
   Static member variables were initialized during the start of the program and destroyed when the program ends.
@@ -47,6 +54,8 @@ References:
   http://bajamircea.github.io/coding/cpp/2016/04/07/move-forward.html
 
 10. How do you share resources safely between threads? How would you share an integer value vs user defined type? 
+Answer: 
+  To safely share resources betweet threads, you must use a data protection mechanism such as mutex. Using mutex for both integer and user defined types, however, user data types are harder to protect.
 11. What are the some of the principles of object-oriented programming?
 Answer:
   There are four basic principles in Object-Oriented programming: Encapsulation, Abstraction, Inheritance and Polymorphism.
@@ -108,10 +117,16 @@ Answer:
 	}
 16. What concept(s) in C++ would you use to manage resources automatically?
 	a. How important are these concepts? 	
-	b. What tools are you familiar with for tracking resource allocations? 
+	b. What tools are you familiar with for tracking resource allocations?
+Answers:
+  Managing resources automatically using RAII (Resource Acquisition Is Initialization) and RRID (Resource Release Is Destruction) idioms.
+  a. These are important because it reduces the complexity of resource management.
+  b. Tools like memcheck and valgrind.
 17. What security concerns have you come across in the past and how have you addressed them?
 18. Name some tools and/or techniques that you personally find to be the most helpful surrounding development.
-19. Name some tools and/or techniques that you personally find to be the most helpful surrounding code maintenance.   
+Answer: vcpkg for library management
+19. Name some tools and/or techniques that you personally find to be the most helpful surrounding code maintenance.
+Answers: git   
 20. Scenario: You are dealing with legacy code containing no test suites nor documented requirements, and are required to make a change. Describe your expected process for how you may approach the solution. 
 	a. Consider both a long term and short-term solutions. 
 21. What concerns do you had supporting legacy operating systems? (If any)
